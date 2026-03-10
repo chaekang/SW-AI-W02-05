@@ -6,30 +6,25 @@ import math
 
 t = int(sys.stdin.readline())
 
-arr=list()
-
-def isPrime(n):
-    if n < 2:
+def isPrime(x):
+    if x < 2:
         return False
-    
-    for i in range(2, int(math.sqrt(n)+1)):
-        if (n%i == 0):
+    for i in range(2, int(math.sqrt(x)+1)):
+        if x % i == 0:
             return False
+    
     return True
-
-for i in range(2, 5000):
-    if (isPrime(i)):
-        arr.append(i)
 
 for _ in range(t):
     n = int(sys.stdin.readline())
 
     a = n//2
     b = n//2
+
     while True:
         if (isPrime(a) and isPrime(b)):
-            if (a+b == n):
-                print(str(a)+" "+str(b))
+            if (a + b == n):
+                print(str(a) + " " + str(b))
                 break
-        a-=1
-        b+=1
+        a -= 1
+        b += 1

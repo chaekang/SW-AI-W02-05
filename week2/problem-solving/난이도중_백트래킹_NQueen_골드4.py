@@ -3,31 +3,29 @@
 
 import sys
 
-n=int(sys.stdin.readline())
+n = int(sys.stdin.readline())
 
-arr=[0]*n
+arr = [0] * n
 
-ans=0
-
-def isPossible(col):
+def is_possible(col):
     for i in range(col):
-        if (arr[i] == arr[col]):
+        if (arr[col] == arr[i]):
             return False
-        elif (abs(i-col)==abs(arr[i]-arr[col])):
+        elif (abs(arr[col] - arr[i]) == abs(col - i)):
             return False
-        
     return True
 
-def NQueen(row):
+ans = 0
+def NQueen(col):
     global ans
-    if (row == n):
+    if col == n:
         ans += 1
         return
     
     for i in range(n):
-        arr[row]=i
-        if (isPossible(row)):
-            NQueen(row+1)
+        arr[col] = i
+        if is_possible(col):
+            NQueen(col + 1)
 
 NQueen(0)
 print(ans)

@@ -3,15 +3,29 @@
 
 n=int(input())
 
-arr=[0]*n
+arr = [0]*n
+visited = [False] * n
 
 for i in range(n):
     arr[i]= list(map(int, input().split()))
 
 result=list()
-def backtracking(x, y, cost, path):
-    if (arr[x][y] == 0):
+ans=999999999
+def tsp(start, end, cost, depth):
+    global ans
+    if (depth == n and end == start):
+        ans = min(ans, cost + arr[end][start])
         return
-    
-    # if (cost == n):
-        
+
+    for i in range(n):
+        if (not visited[i] and arr[end][i]!=0):
+            visited[i]=True
+            tsp(start, i, cost + arr[end][i], depth+1)
+            visited[i]=False
+
+for i in range(0, n):
+    tsp(i, i, 0, 0)
+    visited[:] = [False]*n
+
+
+print(ans)
