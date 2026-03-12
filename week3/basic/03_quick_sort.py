@@ -35,10 +35,10 @@ def partition(arr, low, high):
         피벗의 최종 위치 인덱스
     """
     # TODO: 피벗을 선택 (일반적으로 마지막 원소)
-    pass
+    pivot=arr[-1]
     
     # TODO: i는 작은 원소들의 마지막 인덱스를 추적
-    pass
+    
     
     # TODO: low부터 high-1까지 순회하면서
     ## 현재 원소가 피벗보다 작거나 같으면:
