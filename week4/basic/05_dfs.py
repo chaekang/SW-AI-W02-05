@@ -44,7 +44,7 @@ def dfs(graph, start, visited=None):
     """
     # TODO: visited가 None이면 초기화
     if visited is None:
-        visited=[]
+        visited = []
     
     # TODO: 현재 정점 방문
     visited.append(start)
@@ -52,9 +52,9 @@ def dfs(graph, start, visited=None):
     # TODO: 인접한 정점들에 대해 재귀
     ## 방문하지 않은 정점이면 재귀 호출
     for i in range(len(graph[start])):
-        x = graph[start][i]
-        if x not in visited:
-            dfs(graph, x, visited)
+        v = graph[start][i]
+        if v not in visited:
+            dfs(graph, v, visited)
     
     return visited
 

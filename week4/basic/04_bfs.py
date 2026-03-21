@@ -56,12 +56,12 @@ def bfs(graph, start):
     ## 인접한 정점들 확인
     ## 방문하지 않은 정점이면 큐에 추가
     while q:
-        v = q.pop()
-        for i in range(len(graph[v])):
-            x = graph[v][i]
-            if x not in visited:
-                q.append(x)
-                visited.append(x)
+        x = q.pop()
+        for g in range(len(graph[x])):
+            v = graph[x][g]
+            if v not in visited:
+                q.append(v)
+                visited.append(v)
     
     return visited
 
