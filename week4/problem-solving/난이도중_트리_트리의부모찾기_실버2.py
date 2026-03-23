@@ -4,32 +4,28 @@
 from collections import deque
 
 def bfs(graph, start, visited):
-    global n
-    q = deque()
-
+    q=deque()
     q.append(start)
-    visited[start] = True
-
-    ans = [0] * (n+1)
+    visited[start]=True
+    result = [0]*len(visited)
 
     while q:
-        x = q.pop()
-        
+        x = q.popleft()
         for i in range(len(graph[x])):
-            tmp = graph[x][i]
-            if visited[tmp]:
+            cur = graph[x][i]
+
+            if visited[cur]:
                 continue
-
-            visited[tmp]=True
-            q.append(tmp)
-            ans[tmp] = x
-
-    return ans
+            result[cur] = x
+            q.append(cur)
+            visited[cur]=True
+    
+    return result
 
 if __name__ == "__main__":
     n = int(input())
-
     graph = {i:[] for i in range(n+1)}
+
     for i in range(n-1):
         u, v = map(int, input().split())
         graph[u].append(v)
@@ -37,6 +33,6 @@ if __name__ == "__main__":
 
     visited = [False] * (n+1)
     ans = bfs(graph, 1, visited)
-
+    
     for i in range(2, n+1):
         print(ans[i])
