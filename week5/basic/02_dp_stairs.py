@@ -50,7 +50,7 @@ def climb_stairs(n):
         return n
     
     # TODO: dp 배열 생성 및 초기화
-    dp=[0]*(n+1)
+    dp = [0]*(n+1)
 
     dp[0]=0
     dp[1]=1

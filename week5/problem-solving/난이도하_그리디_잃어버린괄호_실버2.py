@@ -2,28 +2,17 @@
 # 문제 링크: https://www.acmicpc.net/problem/1541
 
 if __name__ == "__main__":
-    formula = input()
+    formula = input().strip()
 
-    tmp=0
-    num=""
-    isMinus=False
-    ans=0
-    for i in range(len(formula)):
-        num += formula[i]
-        if (formula[i] == "+" or formula[i] == "-" or i == len(formula)-1):
-            if formula[i] == "+" or formula[i] == "-":
-                num = num[:-1]
-            
-            tmp += int(num)
-            num=""
-            if (formula[i] == "-" or i == len(formula)-1):
-                if (isMinus):
-                    ans -= tmp
-                    tmp=0
+    nums = list()
+    parts = formula.split('-')
+    for p in parts:
+        tmp = sum(map(int, p.split('+')))
 
-                else:
-                    ans += tmp
-                    tmp=0
-                    isMinus=True
-        
+        nums.append(tmp)
+
+    ans = nums[0]
+    for i in range(1, len(nums)):
+        ans -= nums[i]
+
     print(ans)

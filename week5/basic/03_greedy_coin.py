@@ -48,11 +48,11 @@ def make_change_greedy(change, coins):
     ## 개수가 0보다 크면 결과에 추가
     for c in coins:
         used = change // c
-        total_coins += used
-        change = change % c
-
+        total_coins+=used
+        change %= c
         if used != 0:
             result[c]=used
+
     
     return total_coins, result
 

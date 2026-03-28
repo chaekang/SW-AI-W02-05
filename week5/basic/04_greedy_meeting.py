@@ -35,7 +35,7 @@ def select_meetings(meetings):
     # TODO: 회의가 없으면 0 반환
     if meetings is None:
         return 0
-    
+
     # TODO: 종료 시간 기준으로 정렬
     meetings.sort(key=lambda x: x[1],)
     
@@ -43,16 +43,15 @@ def select_meetings(meetings):
     
     # TODO: 첫 번째 회의 선택
     selected.append(meetings[0])
+    cur_meeting = meetings[0][1]
     
     # TODO: 나머지 회의들 확인
     ## 이전 회의가 끝난 후 시작하는 회의만 선택
-    
-    end_time=meetings[0][1]
     for i in range(1, len(meetings)):
         start, end = meetings[i]
-        if (start >= end_time):
+        if start > cur_meeting:
             selected.append((start, end))
-            end_time=end
+            cur_meeting = end
     
     return len(selected), selected
 

@@ -85,8 +85,8 @@ def fibonacci_memo(n, memo=None):
     """
     # TODO: memo가 None이면 빈 딕셔너리로 초기화
     if memo is None:
-        memo=dict()
-    
+        memo = dict()
+
     # TODO: base case 
     memo[0]=0
     memo[1]=1
