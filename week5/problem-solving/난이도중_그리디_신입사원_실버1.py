@@ -6,19 +6,20 @@ if __name__ == "__main__":
 
     for _ in range(t):
         n = int(input())
-        arr=list()
+        arr = list()
         for i in range(n):
             doc, inter = map(int, input().split())
-            arr.append((doc, inter))
-        
-        arr.sort(key = lambda x:x[0])
 
-        cnt = 0
-        rank=n+1
+            arr.append((doc, inter))
+
+        arr.sort()
+        ans=0
+        score=n+1
+
         for i in range(n):
             doc, inter = arr[i]
-
-            if rank > inter:
-                cnt += 1
-                rank=inter
-        print(cnt)
+            if inter < score:
+                ans += 1
+                score=inter
+        
+        print(ans)

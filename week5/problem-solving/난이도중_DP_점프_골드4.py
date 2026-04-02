@@ -1,26 +1,37 @@
-# DP - 점프 (백준 골드4)
-# 문제 링크: https://www.acmicpc.net/problem/2253
+INF = 10**9
 
 if __name__ == "__main__":
     n, m = map(int, input().split())
+    blocked = set(int(input()) for _ in range(m))
 
-    dp=[0]*(n+1)
-    for i in range(m):
-        x = int(input())
-        dp[x].append((-1,0))
+    if 2 in blocked:
+        print(-1)
+        exit()
 
-    dp[1].append((0, 0))
-    dx = [-1, 0, 1]
+    max_jump = int((2 * n) ** 0.5) + 2
+    dp = [[INF] * (max_jump + 1) for _ in range(n + 1)]
+    dp[1][0] = 0
 
-    for i in range(1, n):
-        cnt, jump = dp[i]
-        for j in range(3):
-            nx = jump + dx[j]
-            if (nx < 1):
-                continue
+    for i in range(2, n + 1):
+        if i in blocked:
+            continue
 
-            n_cnt = cnt+1
-            n_jump = nx
-            if (dp[i+nx][0] == -1):
-                continue
-            dp[i+nx].append((n_cnt, n_jump))
+        limit = int((2 * i) ** 0.5) + 1
+        for j in range(1, limit + 1):
+            prev = i - j
+            if prev < 1:
+                break
+
+            best = dp[prev][j]
+
+            if j - 1 >= 0:
+                best = min(best, dp[prev][j - 1])
+
+            if j + 1 <= max_jump:
+                best = min(best, dp[prev][j + 1])
+
+            if best != INF:
+                dp[i][j] = best + 1
+
+    ans = min(dp[n])
+    print(ans if ans != INF else -1)
